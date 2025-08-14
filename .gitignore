@@ -1,0 +1,15 @@
+# IDEs
+.idea
+.vscode
+.cursor
+.zed
+
+# Dependencies
+node_modules
+bun.lock
+
+# Inputs
+data/
+
+# Miscellaneous
+.DS_Store
