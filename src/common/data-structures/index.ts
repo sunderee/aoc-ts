@@ -1,3 +1,2 @@
-export * from './point';
-export * from './tuples';
-
+export * from "./point";
+export * from "./tuples";

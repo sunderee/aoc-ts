@@ -1,1 +1,1 @@
-export type Pair<F, S> = { first: F, second: S };
+export type Pair<F, S> = { first: F; second: S };

@@ -1,12 +1,18 @@
 import { argv } from "bun";
 import { loadInput, type Solution } from "./src/common";
-import { Day01Year2015, Day02Year2015, Day03Year2015 } from "./src/solutions";
+import {
+  Day01Year2015,
+  Day02Year2015,
+  Day03Year2015,
+  Day04Year2015,
+} from "./src/solutions";
 
 const SOLUTIONS: Record<number, Record<number, Solution>> = {
   2015: {
     1: new Day01Year2015(),
     2: new Day02Year2015(),
     3: new Day03Year2015(),
+    4: new Day04Year2015(),
   },
 };
 

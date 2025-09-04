@@ -29,10 +29,16 @@ export class Day03Year2015 implements Solution {
     visitedPoints.add(currentPointSanta);
     visitedPoints.add(currentPointRoboSanta);
 
-    const directionPairs = toPairs(input.split(''));
+    const directionPairs = toPairs(input.split(""));
     for (const pair of directionPairs) {
-      currentPointSanta = this.pointFromDirection(currentPointSanta, pair.first);
-      currentPointRoboSanta = this.pointFromDirection(currentPointRoboSanta, pair.second);
+      currentPointSanta = this.pointFromDirection(
+        currentPointSanta,
+        pair.first,
+      );
+      currentPointRoboSanta = this.pointFromDirection(
+        currentPointRoboSanta,
+        pair.second,
+      );
 
       visitedPoints.add(currentPointSanta);
       visitedPoints.add(currentPointRoboSanta);

@@ -8,7 +8,7 @@ describe("2015 day 01", () => {
     expect(solution).toBeDefined();
   });
 
-  it('should solve first part', () => {
+  it("should solve first part", () => {
     expect(solution.first("(())")).toEqual(0);
     expect(solution.first("()()")).toEqual(0);
     expect(solution.first("(((")).toEqual(3);
@@ -20,8 +20,8 @@ describe("2015 day 01", () => {
     expect(solution.first(")())())")).toEqual(-3);
   });
 
-  it('should solve second part', () => {
-    expect(solution.second(')')).toEqual(1);
-    expect(solution.second('()())')).toEqual(5);
+  it("should solve second part", () => {
+    expect(solution.second(")")).toEqual(1);
+    expect(solution.second("()())")).toEqual(5);
   });
 });
