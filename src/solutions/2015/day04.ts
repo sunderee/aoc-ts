@@ -26,7 +26,6 @@ export class Day04Year2015 implements Solution {
     return current;
   }
 
-  private generateMD5Hash(input: string): string {
-    return createHash("md5").update(input).digest("hex");
-  }
+  private generateMD5Hash = (input: string): string =>
+    createHash("md5").update(input).digest("hex");
 }
