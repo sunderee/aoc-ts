@@ -11,9 +11,28 @@ export class Point2DSet {
 		return this.points.length;
 	}
 
+	get size(): number {
+		return this.points.length;
+	}
+
 	add(point: Point2D): void {
 		if (!this.points.some((item) => item.x === point.x && item.y === point.y)) {
 			this.points.push(point);
 		}
+	}
+
+	has(point: Point2D): boolean {
+		return this.points.some((item) => item.x === point.x && item.y === point.y);
+	}
+
+	delete(point: Point2D): boolean {
+		const index = this.points.findIndex(
+			(item) => item.x === point.x && item.y === point.y,
+		);
+		if (index !== -1) {
+			this.points.splice(index, 1);
+			return true;
+		}
+		return false;
 	}
 }
