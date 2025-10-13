@@ -18,7 +18,9 @@ export class Day06Year2015 implements Solution {
 		input
 			.split("\n")
 			.map((item) => this.parseCommand(item))
-			.forEach((command) => this.executeLightCommand(command, turnedOnLights));
+			.forEach((command) => {
+				this.executeLightCommand(command, turnedOnLights);
+			});
 
 		return turnedOnLights.size;
 	}
@@ -28,9 +30,9 @@ export class Day06Year2015 implements Solution {
 		input
 			.split("\n")
 			.map((item) => this.parseCommand(item))
-			.forEach((command) =>
-				this.executeBrightnessCommand(command, brightnessMap),
-			);
+			.forEach((command) => {
+				this.executeBrightnessCommand(command, brightnessMap);
+			});
 
 		// Calculate total brightness
 		let totalBrightness = 0;
