@@ -20,7 +20,7 @@ Template for a test:
 import { describe, expect, it } from "bun:test";
 import { DayXXYearYYYY } from "./dayXX";
 
-describe("YYYY day 01", () => {
+describe("YYYY day XX", () => {
   const solution = new DayXXYearYYYY();
 
   it("should be defined", () => {

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "bun:test";
 import { Day05Year2015 } from "./day05";
 
-describe("YYYY day 01", () => {
+describe("2015 day 05", () => {
   const solution = new Day05Year2015();
 
   it("should be defined", () => {
