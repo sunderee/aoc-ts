@@ -5,34 +5,29 @@ export function point2DCopy(current: Point2D, update: Point2D): Point2D {
 }
 
 export class Point2DSet {
-	private readonly points: Array<Point2D> = [];
+	private readonly points: Set<string> = new Set();
 
 	get length(): number {
-		return this.points.length;
+		return this.points.size;
 	}
 
 	get size(): number {
-		return this.points.length;
+		return this.points.size;
 	}
 
 	add(point: Point2D): void {
-		if (!this.points.some((item) => item.x === point.x && item.y === point.y)) {
-			this.points.push(point);
-		}
+		this.points.add(this.pointToString(point));
 	}
 
 	has(point: Point2D): boolean {
-		return this.points.some((item) => item.x === point.x && item.y === point.y);
+		return this.points.has(this.pointToString(point));
 	}
 
 	delete(point: Point2D): boolean {
-		const index = this.points.findIndex(
-			(item) => item.x === point.x && item.y === point.y,
-		);
-		if (index !== -1) {
-			this.points.splice(index, 1);
-			return true;
-		}
-		return false;
+		return this.points.delete(this.pointToString(point));
+	}
+
+	private pointToString(point: Point2D): string {
+		return `${point.x},${point.y}`;
 	}
 }

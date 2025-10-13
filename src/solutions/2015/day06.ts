@@ -1,4 +1,4 @@
-import { Point2DSet, type Point2D, type Solution } from "../../common";
+import { type Point2D, Point2DSet, type Solution } from "../../common";
 
 enum LightCommand {
 	toggle,
@@ -25,7 +25,7 @@ export class Day06Year2015 implements Solution {
 	private executeLightCommand(
 		command: ParsedCommand,
 		currentState: Point2DSet,
-	) {
+	): void {
 		switch (command.command) {
 			case LightCommand.turnOn:
 				for (let x = command.from.x; x <= command.to.x; x++) {
@@ -64,8 +64,8 @@ export class Day06Year2015 implements Solution {
 		const coordinatesArray: Point2D[] | undefined = line
 			.match(/(\d{1,3},\d{1,3})/g)
 			?.map((match) => {
-				const xy = match.split(",").map((item) => parseInt(item));
-				return { x: xy.at(0)!, y: xy.at(1)! } satisfies Point2D;
+				const xy = match.split(",").map((item) => parseInt(item, 10));
+				return { x: xy.at(0) ?? -1, y: xy.at(1) ?? -1 } satisfies Point2D;
 			});
 		const fromCoordinates = coordinatesArray?.at(0);
 		const toCoordinates = coordinatesArray?.at(1);
