@@ -1,4 +1,9 @@
-import { type Point2D, Point2DSet, type Solution } from "../../common";
+import {
+	type Point2D,
+	Point2DMap,
+	Point2DSet,
+	type Solution,
+} from "../../common";
 
 enum LightCommand {
 	toggle,
@@ -19,7 +24,21 @@ export class Day06Year2015 implements Solution {
 	}
 
 	second(input: string): number {
-		return -1;
+		const brightnessMap = new Point2DMap<number>();
+		input
+			.split("\n")
+			.map((item) => this.parseCommand(item))
+			.forEach((command) =>
+				this.executeBrightnessCommand(command, brightnessMap),
+			);
+
+		// Calculate total brightness
+		let totalBrightness = 0;
+		for (const brightness of brightnessMap.values()) {
+			totalBrightness += brightness;
+		}
+
+		return totalBrightness;
 	}
 
 	private executeLightCommand(
@@ -53,6 +72,30 @@ export class Day06Year2015 implements Solution {
 					}
 				}
 				break;
+		}
+	}
+
+	private executeBrightnessCommand(
+		command: ParsedCommand,
+		brightnessMap: Point2DMap<number>,
+	): void {
+		for (let x = command.from.x; x <= command.to.x; x++) {
+			for (let y = command.from.y; y <= command.to.y; y++) {
+				const point = { x, y };
+				const currentBrightness = brightnessMap.get(point) ?? 0;
+
+				switch (command.command) {
+					case LightCommand.turnOn:
+						brightnessMap.set(point, currentBrightness + 1);
+						break;
+					case LightCommand.turnOff:
+						brightnessMap.set(point, Math.max(0, currentBrightness - 1));
+						break;
+					case LightCommand.toggle:
+						brightnessMap.set(point, currentBrightness + 2);
+						break;
+				}
+			}
 		}
 	}
 

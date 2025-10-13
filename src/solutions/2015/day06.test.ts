@@ -15,6 +15,10 @@ describe("2015 day 06", () => {
     })
 
     it("should solve second part", () => {
-        expect(solution.second("")).toEqual(-1);
+        expect(solution.second("turn on 0,0 through 0,0")).toEqual(1);
+        expect(solution.second("toggle 0,0 through 999,999")).toEqual(2000000);
+        expect(solution.second("turn on 0,0 through 0,0\nturn off 0,0 through 0,0")).toEqual(0);
+        expect(solution.second("turn on 0,0 through 0,0\nturn off 0,0 through 0,0\nturn on 0,0 through 0,0")).toEqual(1);
+        expect(solution.second("turn on 0,0 through 0,0\ntoggle 0,0 through 0,0")).toEqual(3);
     })
 });
