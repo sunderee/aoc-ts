@@ -1,7 +1,7 @@
 import { isNumberString, safeParseNumber, type Solution } from "../../common";
 
 type Instruction = { destination: string } & (
-	| { type: "assignment"; value: number }
+	| { type: "assignment"; value: string }
 	| { type: "and"; left: string; right: string }
 	| { type: "or"; left: string; right: string }
 	| { type: "right_shift"; left: string; right: string }
@@ -26,7 +26,7 @@ export class Day07Year2015 implements Solution {
 	}
 
 	private parseInstruction(line: string): Instruction {
-		const assignmentMatch = line.match(/^(\d+)\s*->\s*([a-z]+)$/im);
+		const assignmentMatch = line.match(/^([a-z0-9]+)\s*->\s*([a-z]+)$/im);
 		if (assignmentMatch !== null) {
 			const valueCandidate = assignmentMatch[1];
 			const destinationCandidate = assignmentMatch[2];
@@ -34,8 +34,7 @@ export class Day07Year2015 implements Solution {
 				throw new Error(`Unable to parse value or destination out of ${line}`);
 			}
 
-			const [value, destination] = [parseInt(valueCandidate, 10), destinationCandidate];
-			return { destination, type: "assignment", value };
+			return { destination: destinationCandidate, type: "assignment", value: valueCandidate };
 		}
 
 		const andOrMatch = line.match(/^([a-z0-9]+)\s+(AND|OR)\s+([a-z0-9]+)\s*->\s*([a-z]+)$/im);
@@ -80,7 +79,11 @@ export class Day07Year2015 implements Solution {
 
 		switch (instruction.type) {
 			case 'assignment':
-				return instruction.value;
+				if (isNumberString(instruction.value)) {
+					return safeParseNumber(instruction.value)!;
+				} else {
+					return this.evaluateInstruction(instruction.value, wireInstructionsMap);
+				}
 			case 'and':
 				let leftValueANDResult: number;
 				let rightValueANDResult: number;
