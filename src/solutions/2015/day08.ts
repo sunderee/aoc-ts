@@ -10,15 +10,15 @@ export class Day08Year2015 implements Solution {
     }
 
     private codeCharactersMinusInMemoryCharacters(line: string): number {
-        const codeLength = line.length; // Includes quotes
+        const codeLength = line.length;
         let inMemoryLength = 0;
 
         for (let i = 1; i < line.length - 1; i++) {
             if (line[i] === "\\") {
                 if (line[i + 1] === "\\" || line[i + 1] === '"') {
-                    i += 1; // Skip the escaped character
+                    i += 1;
                 } else if (line[i + 1] === "x" && i + 3 < line.length) {
-                    i += 3; // Skip \xNN
+                    i += 3;
                 }
             }
             inMemoryLength++;
@@ -28,8 +28,8 @@ export class Day08Year2015 implements Solution {
     }
 
     private additionalEncodingMinusCodeCharacters(line: string): number {
-        const codeLength = line.length; // Original code length
-        let encodedLength = 2; // Start and end quotes
+        const codeLength = line.length;
+        let encodedLength = 2;
 
         for (const char of line) {
             if (char === '"' || char === "\\") {
