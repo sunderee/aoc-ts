@@ -79,10 +79,24 @@ if (solutionDay === undefined) {
 
 const input = await loadInput(year, day);
 
-console.time("first part");
-console.log(solutionDay.first(input));
-console.timeEnd("first part");
+// Special case for year 2015 day 7
+if (year === 2015 && day === 7) {
+  console.time("first part");
+  const firstPartSolution = solutionDay.first(input, { targetWire: "a" });
+  console.log(firstPartSolution);
+  console.timeEnd("first part");
 
-console.time("second part");
-console.log(solutionDay.second(input));
-console.timeEnd("second part");
+  console.time("second part");
+  console.log(solutionDay.second(input, { targetWire: 'a', overrideTargetWire: 'b', overrideValue: firstPartSolution }));
+  console.timeEnd("second part");
+} else {
+  console.time("first part");
+  console.log(solutionDay.first(input));
+  console.timeEnd("first part");
+
+  console.time("second part");
+  console.log(solutionDay.second(input));
+  console.timeEnd("second part");
+}
+
+
