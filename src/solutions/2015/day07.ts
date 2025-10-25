@@ -162,7 +162,7 @@ export class Day07Year2015 implements Solution {
 					valueNOTResult = this.evaluateInstruction(instruction.value, wireInstructionsMap);
 				}
 
-				return ~valueNOTResult;
+				return (~valueNOTResult) & 0xFFFF;
 		}
 	}
 }
