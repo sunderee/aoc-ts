@@ -1,6 +1,6 @@
 import { argv } from "bun";
 import { loadInput, type Solution } from "./src/common";
-import { Day01Year2015, Day02Year2015, Day03Year2015, Day04Year2015, Day05Year2015, Day06Year2015, Day07Year2015, Day08Year2015, Day09Year2015, Day10Year2015 } from "./src/solutions";
+import { Day01Year2015, Day02Year2015, Day03Year2015, Day04Year2015, Day05Year2015, Day06Year2015, Day07Year2015, Day08Year2015, Day09Year2015, Day10Year2015, Day11Year2015 } from "./src/solutions";
 
 const SOLUTIONS: Record<number, Record<number, Solution>> = {
   2015: {
@@ -14,6 +14,7 @@ const SOLUTIONS: Record<number, Record<number, Solution>> = {
     8: new Day08Year2015(),
     9: new Day09Year2015(),
     10: new Day10Year2015(),
+    11: new Day11Year2015()
   },
 };
 
@@ -82,8 +83,8 @@ if (solutionDay === undefined) {
 
 const input = await loadInput(year, day);
 
-// Special case for year 2015 day 7
 if (year === 2015 && day === 7) {
+  // Special case for year 2015 day 7
   console.time("first part");
   const firstPartSolution = solutionDay.first(input, { targetWire: "a" });
   console.log(firstPartSolution);
@@ -91,6 +92,16 @@ if (year === 2015 && day === 7) {
 
   console.time("second part");
   console.log(solutionDay.second(input, { targetWire: 'a', overrideTargetWire: 'b', overrideValue: firstPartSolution }));
+  console.timeEnd("second part");
+} else if (year === 2015 && day === 11) {
+  // Special case for year 2015 day 11
+  console.time("first part");
+  const firstPartSolution = solutionDay.first(input) as string;
+  console.log(firstPartSolution);
+  console.timeEnd("first part");
+
+  console.time("second part");
+  console.log(solutionDay.second(firstPartSolution));
   console.timeEnd("second part");
 } else {
   console.time("first part");

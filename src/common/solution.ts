@@ -1,4 +1,4 @@
 export interface Solution {
-    first(input: string, options?: { [key: string]: unknown }): number;
-    second(input: string, options?: { [key: string]: unknown }): number;
+    first(input: string, options?: { [key: string]: unknown }): number | string;
+    second(input: string, options?: { [key: string]: unknown }): number | string;
 }
