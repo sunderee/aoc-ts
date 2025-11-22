@@ -1,6 +1,6 @@
 import { argv } from "bun";
 import { loadInput, type Solution } from "./src/common";
-import { Day01Year2015, Day02Year2015, Day03Year2015, Day04Year2015, Day05Year2015, Day06Year2015, Day07Year2015, Day08Year2015, Day09Year2015, Day10Year2015, Day11Year2015, Day12Year2015, Day13Year2015 } from "./src/solutions";
+import { Day01Year2015, Day02Year2015, Day03Year2015, Day04Year2015, Day05Year2015, Day06Year2015, Day07Year2015, Day08Year2015, Day09Year2015, Day10Year2015, Day11Year2015, Day12Year2015, Day13Year2015, Day14Year2015 } from "./src/solutions";
 
 const SOLUTIONS: Record<number, Record<number, Solution>> = {
   2015: {
@@ -17,6 +17,7 @@ const SOLUTIONS: Record<number, Record<number, Solution>> = {
     11: new Day11Year2015(),
     12: new Day12Year2015(),
     13: new Day13Year2015(),
+    14: new Day14Year2015(),
   },
 };
 
@@ -104,6 +105,14 @@ if (year === 2015 && day === 7) {
 
   console.time("second part");
   console.log(solutionDay.second(firstPartSolution));
+  console.timeEnd("second part");
+} else if (year === 2015 && day === 14) {
+  console.time("first part");
+  console.log(solutionDay.first(input, { flyDuration: 2503 }));
+  console.timeEnd("first part");
+
+  console.time("second part");
+  console.log(solutionDay.second(input, { flyDuration: 2503 }));
   console.timeEnd("second part");
 } else {
   console.time("first part");
