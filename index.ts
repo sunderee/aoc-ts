@@ -1,6 +1,6 @@
 import { argv } from "bun";
 import { loadInput, type Solution } from "./src/common";
-import { Day01Year2015, Day02Year2015, Day03Year2015, Day04Year2015, Day05Year2015, Day06Year2015, Day07Year2015, Day08Year2015, Day09Year2015, Day10Year2015, Day11Year2015, Day12Year2015, Day13Year2015, Day14Year2015 } from "./src/solutions";
+import { Day01Year2015, Day02Year2015, Day03Year2015, Day04Year2015, Day05Year2015, Day06Year2015, Day07Year2015, Day08Year2015, Day09Year2015, Day10Year2015, Day11Year2015, Day12Year2015, Day13Year2015, Day14Year2015, Day15Year2015 } from "./src/solutions";
 
 const SOLUTIONS: Record<number, Record<number, Solution>> = {
   2015: {
@@ -18,6 +18,7 @@ const SOLUTIONS: Record<number, Record<number, Solution>> = {
     12: new Day12Year2015(),
     13: new Day13Year2015(),
     14: new Day14Year2015(),
+    15: new Day15Year2015(),
   },
 };
 
@@ -69,52 +70,56 @@ function parseArguments(): CLIArguments {
   return cliArguments;
 }
 
-const { year, day } = parseArguments();
-console.log(`Running solution for year ${year} and day ${day}`);
+async function runSolution(year: number, day: number) {
+  const input = await loadInput(year, day);
 
-const solutionYear = SOLUTIONS[year];
-if (solutionYear === undefined) {
-  console.error("No solutions exist for this year yet");
-  process.exit(1);
-}
+  const solutionYear = SOLUTIONS[year];
+  if (solutionYear === undefined) {
+    console.error("No solutions exist for this year yet");
+    process.exit(1);
+  }
 
-const solutionDay = solutionYear[day];
-if (solutionDay === undefined) {
-  console.error("No solutions exist for this day yet");
-  process.exit(1);
-}
+  const solutionDay = solutionYear[day];
+  if (solutionDay === undefined) {
+    console.error("No solutions exist for this day yet");
+    process.exit(1);
+  }
 
-const input = await loadInput(year, day);
+  // Special cases for year 2015
+  if (year === 2015) {
+    if (day === 7) {
+      // Special case for year 2015 day 7
+      console.time("first part");
+      const firstPartSolution = solutionDay.first(input, { targetWire: "a" });
+      console.log(firstPartSolution);
+      console.timeEnd("first part");
 
-if (year === 2015 && day === 7) {
-  // Special case for year 2015 day 7
-  console.time("first part");
-  const firstPartSolution = solutionDay.first(input, { targetWire: "a" });
-  console.log(firstPartSolution);
-  console.timeEnd("first part");
+      console.time("second part");
+      console.log(solutionDay.second(input, { targetWire: 'a', overrideTargetWire: 'b', overrideValue: firstPartSolution }));
+      console.timeEnd("second part");
+      return;
+    } else if (day === 11) {
+      console.time("first part");
+      const firstPartSolution = solutionDay.first(input) as string;
+      console.log(firstPartSolution);
+      console.timeEnd("first part");
 
-  console.time("second part");
-  console.log(solutionDay.second(input, { targetWire: 'a', overrideTargetWire: 'b', overrideValue: firstPartSolution }));
-  console.timeEnd("second part");
-} else if (year === 2015 && day === 11) {
-  // Special case for year 2015 day 11
-  console.time("first part");
-  const firstPartSolution = solutionDay.first(input) as string;
-  console.log(firstPartSolution);
-  console.timeEnd("first part");
+      console.time("second part");
+      console.log(solutionDay.second(firstPartSolution));
+      console.timeEnd("second part");
+      return;
+    } else if (day === 14) {
+      console.time("first part");
+      console.log(solutionDay.first(input, { flyDuration: 2503 }));
+      console.timeEnd("first part");
 
-  console.time("second part");
-  console.log(solutionDay.second(firstPartSolution));
-  console.timeEnd("second part");
-} else if (year === 2015 && day === 14) {
-  console.time("first part");
-  console.log(solutionDay.first(input, { flyDuration: 2503 }));
-  console.timeEnd("first part");
+      console.time("second part");
+      console.log(solutionDay.second(input, { flyDuration: 2503 }));
+      console.timeEnd("second part");
+      return;
+    }
+  }
 
-  console.time("second part");
-  console.log(solutionDay.second(input, { flyDuration: 2503 }));
-  console.timeEnd("second part");
-} else {
   console.time("first part");
   console.log(solutionDay.first(input));
   console.timeEnd("first part");
@@ -124,4 +129,6 @@ if (year === 2015 && day === 7) {
   console.timeEnd("second part");
 }
 
-
+const { year, day } = parseArguments();
+console.log(`Running solution for year ${year} and day ${day}`);
+runSolution(year, day);
