@@ -16,5 +16,8 @@ describe("2015 day 17", () => {
     it("should solve second part", () => {
         const input = [20, 15, 10, 5, 5].join("\n");
         expect(solution.second(input, { maxContainerSize: 25 })).toEqual(3);
+
+        const input2 = [10, 5, 5].join("\n");
+        expect(solution.second(input2, { maxContainerSize: 10 })).toEqual(1);
     });
 });
