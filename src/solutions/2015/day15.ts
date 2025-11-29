@@ -1,4 +1,4 @@
-import type { Solution } from "../../common";
+import { distribute, type Solution } from "../../common";
 
 type Ingredient = {
     name: string;
@@ -18,7 +18,7 @@ export class Day15Year2015 implements Solution {
 
         let bestScore = 0;
 
-        for (const amounts of this.distribute(ingredients.length, 100)) {
+        for (const amounts of distribute(ingredients.length, 100)) {
             const score = this.calculateScoreMinusCalories(ingredients, amounts);
             if (score > bestScore) {
                 bestScore = score;
@@ -36,7 +36,7 @@ export class Day15Year2015 implements Solution {
 
         let bestScore = 0;
 
-        for (const amounts of this.distribute(ingredients.length, 100)) {
+        for (const amounts of distribute(ingredients.length, 100)) {
             const score = this.calculateScoreWith500Calories(ingredients, amounts);
             if (score > bestScore) {
                 bestScore = score;
@@ -111,18 +111,5 @@ export class Day15Year2015 implements Solution {
         }
 
         return this.calculateScoreMinusCalories(ingredients, teaspoons);
-    }
-
-    private *distribute(n: number, total: number): Generator<number[]> {
-        if (n < 1) return;
-        if (n === 1) {
-            yield [total];
-            return;
-        }
-        for (let i = 0; i <= total; i++) {
-            for (const rest of this.distribute(n - 1, total - i)) {
-                yield [i, ...rest];
-            }
-        }
     }
 }

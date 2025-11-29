@@ -1,5 +1,4 @@
-import type { Solution } from "../../common";
-import { permutations } from "../../common/utilities/permutations";
+import { permutations, type Solution } from "../../common";
 
 interface HappinessLine {
     person: string;
