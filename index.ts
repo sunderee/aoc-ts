@@ -1,6 +1,6 @@
 import { argv } from "bun";
 import { loadInput, type Solution } from "./src/common";
-import { Day01Year2015, Day02Year2015, Day03Year2015, Day04Year2015, Day05Year2015, Day06Year2015, Day07Year2015, Day08Year2015, Day09Year2015, Day10Year2015, Day11Year2015, Day12Year2015, Day13Year2015, Day14Year2015, Day15Year2015, Day16Year2015, Day17Year2015 } from "./src/solutions";
+import { Day01Year2015, Day01Year2025, Day02Year2015, Day03Year2015, Day04Year2015, Day05Year2015, Day06Year2015, Day07Year2015, Day08Year2015, Day09Year2015, Day10Year2015, Day11Year2015, Day12Year2015, Day13Year2015, Day14Year2015, Day15Year2015, Day16Year2015, Day17Year2015 } from "./src/solutions";
 
 const SOLUTIONS: Record<number, Record<number, Solution>> = {
   2015: {
@@ -22,6 +22,9 @@ const SOLUTIONS: Record<number, Record<number, Solution>> = {
     16: new Day16Year2015(),
     17: new Day17Year2015(),
   },
+  2025: {
+    1: new Day01Year2025(),
+  },
 };
 
 interface CLIArguments {
@@ -38,10 +41,10 @@ function parseArguments(): CLIArguments {
     if (argument === "-y" || argument === "--year") {
       if (i + 1 < argv.length) {
         const year = parseInt(argv[++i] ?? "0");
-        if (year >= 2015 && year <= 2024) {
+        if (year >= 2015 && year <= 2025) {
           cliArguments.year = year;
         } else {
-          console.error("Year must be between 2015 and 2024");
+          console.error("Year must be between 2015 and 2025");
           process.exit(1);
         }
       } else {

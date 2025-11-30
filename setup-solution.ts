@@ -14,10 +14,10 @@ function parseArguments(): CLIArguments {
         if (argument === "-y" || argument === "--year") {
             if (i + 1 < argv.length) {
                 const year = parseInt(argv[++i] ?? "0");
-                if (year >= 2015 && year <= 2024) {
+                if (year >= 2015 && year <= 2025) {
                     cliArguments.year = year;
                 } else {
-                    console.error("Year must be between 2015 and 2024");
+                    console.error("Year must be between 2015 and 2025");
                     process.exit(1);
                 }
             } else {
