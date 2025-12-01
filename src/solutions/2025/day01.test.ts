@@ -1,4 +1,5 @@
 import { describe, expect, it } from "bun:test";
+import { loadInput } from "../../common";
 import { Day01Year2025 } from "./day01";
 
 describe("2025 day 01", () => {
@@ -8,11 +9,13 @@ describe("2025 day 01", () => {
         expect(solution).toBeDefined();
     });
 
-    it("should solve first part", () => {
-        expect(solution.first("")).toEqual(-1);
+    it("should solve first part", async () => {
+        const input = await loadInput(2025, 1, true);
+        expect(solution.first(input)).toEqual(3);
     });
 
-    it("should solve second part", () => {
-        expect(solution.second("")).toEqual(-1);
+    it("should solve second part", async () => {
+        const input = await loadInput(2025, 1, true);
+        expect(solution.second(input)).toEqual(6);
     });
 });
