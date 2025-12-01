@@ -104,6 +104,7 @@ async function runSolution(year: number, day: number) {
       console.timeEnd("second part");
       return;
     } else if (day === 11) {
+      // Special case for year 2015 day 11
       console.time("first part");
       const firstPartSolution = solutionDay.first(input) as string;
       console.log(firstPartSolution);
@@ -114,6 +115,7 @@ async function runSolution(year: number, day: number) {
       console.timeEnd("second part");
       return;
     } else if (day === 14) {
+      // Special case for year 2015 day 14
       console.time("first part");
       console.log(solutionDay.first(input, { flyDuration: 2503 }));
       console.timeEnd("first part");
