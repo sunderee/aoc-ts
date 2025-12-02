@@ -7,10 +7,11 @@ export class Day02Year2025 implements Solution {
         return input
             .split(",")
             .map((item) => item.split("-"))
-            .map(
-                (rawRange) =>
-                    ({ from: parseInt(rawRange[0] ?? "0", 10), to: parseInt(rawRange[1] ?? "0", 10) }) satisfies Range,
-            )
+            .map((rawRange) => {
+                const from = parseInt(rawRange[0] ?? "0", 10);
+                const to = parseInt(rawRange[1] ?? "0", 10);
+                return { from, to } satisfies Range;
+            })
             .map((range) => this.findAndAddInvalidIDsRepeatedTwice(range))
             .reduce((accumulator, current) => accumulator + current, 0);
     }
@@ -19,10 +20,11 @@ export class Day02Year2025 implements Solution {
         return input
             .split(",")
             .map((item) => item.split("-"))
-            .map(
-                (rawRange) =>
-                    ({ from: parseInt(rawRange[0] ?? "0", 10), to: parseInt(rawRange[1] ?? "0", 10) }) satisfies Range,
-            )
+            .map((rawRange) => {
+                const from = parseInt(rawRange[0] ?? "0", 10);
+                const to = parseInt(rawRange[1] ?? "0", 10);
+                return { from, to } satisfies Range;
+            })
             .map((range) => this.findAllInvalidIDsRepeatedAtLeastTwice(range))
             .reduce((accumulator, current) => accumulator + current, 0);
     }
