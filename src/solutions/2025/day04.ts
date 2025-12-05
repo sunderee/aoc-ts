@@ -17,8 +17,8 @@ export class Day04Year2025 implements Solution {
         let numberOfPaperRollsAccessibleToForklift = 0;
 
         for (let y = 0; y < grid.length; y++) {
-            for (let x = 0; x < grid[y]!.length; x++) {
-                if (grid[y]![x] === "@") {
+            for (let x = 0; x < (grid[y] ?? []).length; x++) {
+                if ((grid[y] ?? [])[x] === "@") {
                     const adjacentPaperRolls = this.countAdjacentPaperRolls(grid, x, y);
                     if (adjacentPaperRolls < 4) {
                         numberOfPaperRollsAccessibleToForklift++;
@@ -38,8 +38,8 @@ export class Day04Year2025 implements Solution {
             const accessibleCells: Array<{ x: number; y: number }> = [];
 
             for (let y = 0; y < grid.length; y++) {
-                for (let x = 0; x < grid[y]!.length; x++) {
-                    if (grid[y]![x] === "@") {
+                for (let x = 0; x < (grid[y] ?? []).length; x++) {
+                    if ((grid[y] ?? [])[x] === "@") {
                         const adjacentPaperRolls = this.countAdjacentPaperRolls(grid, x, y);
                         if (adjacentPaperRolls < 4) {
                             accessibleCells.push({ x, y });
@@ -54,7 +54,7 @@ export class Day04Year2025 implements Solution {
 
             numberOfRemovedPaperRolls += accessibleCells.length;
             for (const cell of accessibleCells) {
-                grid[cell.y]![cell.x] = ".";
+                (grid[cell.y] ?? [])[cell.x] = ".";
             }
         }
 
@@ -66,8 +66,8 @@ export class Day04Year2025 implements Solution {
         for (const direction of Day04Year2025.DIRECTIONS) {
             const nx = x + direction.x;
             const ny = y + direction.y;
-            if (ny >= 0 && ny < grid.length && nx >= 0 && nx < grid[ny]!.length) {
-                if (grid[ny]![nx] === "@") {
+            if (ny >= 0 && ny < grid.length && nx >= 0 && nx < (grid[ny] ?? []).length) {
+                if ((grid[ny] ?? [])[nx] === "@") {
                     count++;
                 }
             }

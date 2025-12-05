@@ -26,7 +26,7 @@ export class Day03Year2025 implements Solution {
 
             while (
                 stack.length > 0 &&
-                stack[stack.length - 1]! < digit &&
+                (stack[stack.length - 1] ?? "") < digit &&
                 line.length - i + stack.length > digitsToKeep
             ) {
                 stack.pop();
