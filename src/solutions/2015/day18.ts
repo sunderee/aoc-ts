@@ -56,7 +56,6 @@ export class Day18Year2015 implements Solution {
         const maxX = grid[0]!.length - 1;
         const maxY = grid.length - 1;
 
-        // Set corners to be stuck on initially
         grid[0]![0] = "#";
         grid[0]![maxX] = "#";
         grid[maxY]![0] = "#";
@@ -67,10 +66,8 @@ export class Day18Year2015 implements Solution {
             const locationsOfCellsToTurnOn = new Set<Point2D>();
             const locationsOfCellsToTurnOff = new Set<Point2D>();
 
-            // Process all cells, but exclude corners from being turned off
             for (let y = 0; y < grid.length; y++) {
                 for (let x = 0; x < grid[y]!.length; x++) {
-                    // Skip corners - they're stuck on
                     const isCorner =
                         (x === 0 && y === 0) ||
                         (x === maxX && y === 0) ||
@@ -104,7 +101,6 @@ export class Day18Year2015 implements Solution {
                 grid[location.y]![location.x] = "#";
             }
 
-            // Ensure corners stay on after each step
             grid[0]![0] = "#";
             grid[0]![maxX] = "#";
             grid[maxY]![0] = "#";
