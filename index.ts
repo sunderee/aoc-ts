@@ -1,6 +1,6 @@
 import { argv } from "bun";
 import { loadInput, type Solution } from "./src/common";
-import { Day01Year2015, Day01Year2025, Day02Year2015, Day02Year2025, Day03Year2015, Day03Year2025, Day04Year2015, Day04Year2025, Day05Year2015, Day05Year2025, Day06Year2015, Day07Year2015, Day08Year2015, Day09Year2015, Day10Year2015, Day11Year2015, Day12Year2015, Day13Year2015, Day14Year2015, Day15Year2015, Day16Year2015, Day17Year2015, Day18Year2015 } from "./src/solutions";
+import { Day01Year2015, Day01Year2025, Day02Year2015, Day02Year2025, Day03Year2015, Day03Year2025, Day04Year2015, Day04Year2025, Day05Year2015, Day05Year2025, Day06Year2015, Day06Year2025, Day07Year2015, Day08Year2015, Day09Year2015, Day10Year2015, Day11Year2015, Day12Year2015, Day13Year2015, Day14Year2015, Day15Year2015, Day16Year2015, Day17Year2015, Day18Year2015 } from "./src/solutions";
 
 const SOLUTIONS: Record<number, Record<number, Solution>> = {
   2015: {
@@ -29,6 +29,7 @@ const SOLUTIONS: Record<number, Record<number, Solution>> = {
     3: new Day03Year2025(),
     4: new Day04Year2025(),
     5: new Day05Year2025(),
+    6: new Day06Year2025(),
   },
 };
 
